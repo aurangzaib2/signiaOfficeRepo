@@ -85,10 +85,12 @@ const Login = () => {
     }
     if(data){
         console.log('data', data);
-        useCont.login(data.signIn);
+        useCont.login(data.signIn.accessToken);
     
     }
 
+
+   
     //login({id:1, name: 'umar'});
 
     // useEffect(()=>{

@@ -85,7 +85,7 @@ const Login = () => {
     }
     if(data){
         console.log('data', data);
-        useCont.login(data.signIn.accessToken);
+        useCont.login(data.signIn);
     
     }
 

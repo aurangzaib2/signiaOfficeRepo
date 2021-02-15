@@ -18,10 +18,14 @@ const Header = (props) => {
     //     }
     // }
     const editProfileShow = (token) => {
-        if(token)
+        if(token){
             history.push('/editprofile');
+        }
+        else{
+            history.push('/');
+        }
     }
-    const token = useContext(AuthContext)
+    const {userDetails} = useContext(AuthContext);
 
             return (
                 <header className="primary-bg-color navbar shadow-sm nav-header">
@@ -48,6 +52,7 @@ const Header = (props) => {
                                             to="/events">{props.events}</NavLink>
                                     </li>
                                     <li>
+                                        
                                         <NavLink activeclassName='active'
                                             to="/hackathon">{props.hackathon}</NavLink>
                                     </li>
@@ -62,7 +67,7 @@ const Header = (props) => {
                                 </Grid>
                                 <Grid md={6}>
 
-                               <p className="imageIcon" onClick={() => editProfileShow(token.token)}>{props.imageTag}</p>     
+                               <p className="imageIcon" onClick={() => editProfileShow(userDetails.accessToken)}>{props.imageTag}</p>     
                                {/* {token.token && <Link to = '/editprofile' > </Link> }  */}
 
                                     
@@ -70,6 +75,7 @@ const Header = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
+                    {console.log('headerjs', userDetails)}
                 </header>
                 );
         

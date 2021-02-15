@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import AvatarDummy from '../../../assets/img/avatar.png';
 import github from '../../../assets/img/github.png';
 import image10 from '../../../assets/img/image10.png';
@@ -7,6 +7,8 @@ import Header from "../../../components/Header";
 import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Button, Grid, Input, InputAdornment, LinearProgress, TextField, Typography } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
+import {AuthContext} from '../../../DispatchContext';
+
 
 import { useStyles } from './styles';
 
@@ -26,6 +28,9 @@ const BorderLinearProgress = withStyles((theme) => ({
 
 
 const RegistrationCard = props => {
+
+    const {userDetails} = useContext(AuthContext);
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -158,7 +163,8 @@ const RegistrationCard = props => {
                             endAdornment={<InputAdornment position="end">Email</InputAdornment>}
                             className={classes.textField}
                             onChange={props.onChangeEmail}
-                            value={props.email}
+                            // value={userDetails.Email}
+                            defaultValue={userDetails.Email}
                             name={props.inputEmail}
                         />
                          <Typography

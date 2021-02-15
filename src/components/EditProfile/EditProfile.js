@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Avatar from '../../assets/img/avatar.png';
 import github from '../../assets/img/github.png';
 import LoginImage from '../../assets/img/login-img.png';
@@ -13,9 +13,15 @@ import RegistrationCard from '../common/RegistrationCard/RegistrationCard';
 // import { SIGN_UP } from '../../components/constants';
 import { gql, useMutation } from '@apollo/client';
 import history from '../../utils/history';
+import {AuthContext} from '../../DispatchContext';
+
+
 
 
 const EditProfile = props => {
+
+
+ 
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
     const [dob, setDob] = useState("");
@@ -241,7 +247,6 @@ const EditProfile = props => {
                 cityCount={0}
                 agricultureCount={0}
             />
-
         </>
     )
 }

@@ -25,8 +25,8 @@ function App() {
   const [userDetails, setUserDetails] = useState();
   const [token, setToken] = useState();
 
-  const login = (token) => {
-    setToken(token);
+  const login = (userDetails) => {
+    setUserDetails(userDetails);
 };
 
   const logout = () => {
@@ -35,7 +35,7 @@ function App() {
 
   return (
 
-    <AuthContext.Provider value={{token, login, logout}}>
+    <AuthContext.Provider value={{userDetails, login, logout}}>
       <ApolloProvider client={client}> 
       
       <AppRouter />

@@ -1,0 +1,20 @@
+.para {
+    margin-left: -50%;
+}
+.profile-user-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 360px;
+    border: 1px solid #27AE60;
+}
+.form-control {
+    border-radius: 25px;
+    border: 1px solid white;
+    padding: 20px; 
+    width: 450px;
+    height: 50px;
+    margin-right: 80%;
+}
+.primary-text-color2 {
+    color: white;
+}

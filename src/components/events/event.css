@@ -1,0 +1,76 @@
+.support {
+    color: white;
+    
+}
+.form-control {
+    border-radius: 25px;
+    border: 1px solid white;
+    padding: 20px; 
+    width: 750px;
+    height: 50px;
+}
+.profile-user-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 360px;
+    border: 1px solid #27AE60;
+}
+.heading-font{
+    color: #FFFFFF;
+    
+}
+.submit {
+    margin-left: 76%;
+    margin-top: -7%;
+}
+.card-body {
+    color: white;
+    background-color: #2C3A6C;
+}
+.blue-default {
+    background-color:  #4157a4;   
+    color: white;
+}
+.Eventsclass {
+    color: white;
+    margin-left: 160%;
+}
+
+.react-tabs__tab-list {
+    border-bottom: 0;
+    margin-bottom: 30px;
+}
+
+.react-tabs ul li {
+    font-size: 20px;
+    color: #fff;
+    display: initial;
+    padding-right: 20px;
+    list-style: none;
+    cursor: pointer;
+    opacity: .6;
+    background-color: transparent;
+    border: 0;
+    border-radius: 0;
+}
+
+.react-tabs ul li:hover, 
+.react-tabs ul li:active,
+.react-tabs ul li.react-tabs__tab--selected {
+    text-decoration: underline;
+    opacity: 1;
+}
+
+.react-tabs__tab:focus {
+    box-shadow: none;
+}
+  
+  .react-tabs__tab:focus {
+    box-shadow: none;
+  }
+  
+  /**/
+  .form-group {
+    margin-bottom: 15px;
+  }
+  

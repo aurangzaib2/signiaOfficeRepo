@@ -1,0 +1,50 @@
+.community {
+    color: white;
+}
+.table {
+    color: white;
+}
+.page-button5 {
+    /* margin-left: 100%; */
+    margin-top: -25%;
+}
+.profile-user-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 360px;
+    border: 1px solid #27AE60;
+}
+.form-control {
+    border-radius: 25px;
+    border: 1px solid white;
+    padding: 20px; 
+    width: 450px;
+    height: 50px;
+}
+.form-control2 {
+    border-radius: 25px;
+    border: 1px solid white;
+    padding: 20px; 
+    width: 650px;
+    min-height: 350px;
+}
+.top-page-heading{
+    color: white;
+}
+.form-group{
+    color: white;  
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+    grid-gap: 30px;  
+    padding: 10px;
+    grid-column: 1 / 2;
+    margin-left: 25%;
+}
+.btn2 {
+    margin-left: 70%;
+    background: white;
+    color: #526BC6; 
+    font-size: 20px;
+    line-height: -20px;
+    
+}

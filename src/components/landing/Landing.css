@@ -1,0 +1,34 @@
+.btn-primary {
+    margin-left: 3%;
+    margin-top: 0px;
+}
+.land {
+    background-color:  #4157a4;
+    color: white;
+}
+.top-page-heading{
+    color: white;
+}
+.process-heading {
+    color: white;
+}
+.process-heading2 {
+    color: white;
+}
+.profile-user-image {
+    height: 60px;
+    width: 60px;
+    border-radius: 360px;
+    border: 1px solid #27AE60;
+}
+.container-card {
+    color: white;
+}
+.card-body {
+    color: white;
+    background-color: #2C3A6C;
+}
+.blue-default {
+    background-color:  #4157a4;   
+    color: white;
+}

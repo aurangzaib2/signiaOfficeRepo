@@ -1,0 +1,557 @@
+body {
+    background-image: url('../img/background.jpg');
+}
+.primary-bg-color {
+    background-color: #4157a4;
+}
+
+.secondary-bg-color {
+    background: #2C3A6C;
+}
+
+
+.primary-text-color {
+    color: #fff;
+}
+
+.red {
+    color: #EE1515;
+}
+
+h1, .h1 {
+    font-size: 36px;
+    font-family: 'robotoregular';
+}
+
+h2, .h2 {
+    font-family: 'robotoregular';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 24px;
+    line-height: 28px;
+}
+
+h3, .h3 {
+    font-family: 'robotoregular';
+    font-style: normal;
+    font-weight: normal;
+    font-size: 22px;
+    line-height: 28px;
+}
+
+p {
+    font-size: 20px;
+    font-family: 'robotoregular';
+}
+
+a {
+    font-size: 20px;
+    font-family: 'robotoregular';
+}
+
+.text-medium {
+    font-size: 18px;
+}
+
+.text-xs-small {
+    font-size: 12px;
+}
+
+.btn-primary {
+    color: #fff;
+    background: transparent;
+    border-color: #fff;
+    border-radius: 25px;
+    padding: 10px 25px;
+    opacity: 1;
+    width: 200px;
+    height: 48px;
+}
+
+.community-text p:last-child {
+    margin-bottom: 0;
+}
+
+.blue-default {
+    background-color: #4157a4;
+}
+
+/*::::::::::::::::::::: margin/padding style start :::::::::::::::::::::*/
+
+.padding-0 {
+    padding: 0px;
+}
+
+.pd-50 {
+    padding: 50px;
+}
+
+.p-t-50 {
+    padding-top: 50px;
+}
+
+.p-t-10 {
+    padding-top: 10px;
+}
+
+.p-btm-50 {
+    padding-bottom: 50px;
+}
+
+.pl-50 {
+    padding-left: 50px;
+}
+
+.pr-50 {
+    padding-right: 50px;
+}
+
+.mt-50 {
+    margin-top: 50px;
+}
+
+.p-left-0 {
+    padding-left: 0;
+}
+
+.p-right-0 {
+    padding-right: 0;
+}
+
+.mt-100 {
+    margin-top: 100px;
+}
+
+.mt-25 {
+    margin-top: 25px;
+}
+
+.mb-25 {
+    margin-bottom: 25px;
+}
+
+
+
+.mt-150 {
+    margin-top: 150px;
+}
+
+.mb-50 {
+    margin-bottom: 50px;
+}
+
+.ml-50 {
+    margin-left: 50px;
+}
+
+.mr-50 {
+    margin-right: 50px;
+}
+
+/*::::::::::::::::::::: margin/padding style end :::::::::::::::::::::*/
+
+.blog-list a {
+    text-decoration: none;
+    font-family: 'robotobold';
+    font-size: 16px;
+}
+
+.news-list a {
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'robotobold';
+    color: #fff;
+    font-size: 16px;
+}
+
+/*..................................................*/
+
+/*navbar css*/
+.nav-header {
+    width: 100%;
+    height: 74px;
+    display: flex;
+    position: fixed;
+    z-index: 99;
+}
+
+.nav-list ul li {
+    list-style: none;
+    float: left;
+    padding-left: 25px;
+    padding-right: 25px;
+}
+
+    .nav-list ul li a {
+        color: rgba(255,255,255,0.6);
+        text-decoration: none;
+    }
+
+    .nav-list ul li .active {
+        border-color: rgba(255,255,255,0.6);
+    }
+
+    .nav-list ul li a:hover {
+        opacity: 100;
+    }
+
+        .nav-list ul li a:active {
+            opacity: 100;
+        }
+/*..................................................*/
+
+/*Developer Resource Center Css*/
+.resource {
+    padding-right: 250px;
+}
+
+.resource-image {
+    float: right;
+    text-align: center;
+    width: 100%;
+    margin-top: 50px;
+}
+
+.core-section {
+    float: left;
+    width: 100%;
+}
+
+/*::::::::::::::::::::: Button style start :::::::::::::::::::::*/
+.button {
+    background: transparent;
+    border-color: #fff;
+    border-radius: 50px;
+    width: 170px;
+    height: 48px;
+    padding-top: 11px;
+}
+
+.button-transparent {
+    color: #fff;
+    background: transparent;
+    border-color: #fff;
+    border-radius: 25px;
+    padding: 10px 25px;
+    opacity: 1;
+    width: 200px;
+    height: 48px;
+}
+
+.button-filled {
+    color: #526BC6;
+    background: #fff;
+    border-color: #fff;
+    border-radius: 25px;
+    padding: 10px 50px;
+    opacity: 1;
+    width: 200px;
+    height: 48px;
+}
+
+.button-filled-blue {
+    color: #fff;
+    background: #4157a4;
+    border-color: none;
+    border-radius: 25px;
+    padding: 10px 50px;
+    opacity: 1;
+    width: 200px;
+    height: 48px;
+}
+
+.button-white {
+    color: #526BC6;
+    background: #fff;
+    border-color: #4157a4;
+    border-radius: 25px;
+    padding: 10px 50px;
+    opacity: 1;
+    width: 200px;
+    height: 48px;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #4157a4;
+    border-color: #fff;
+    text-decoration: none;
+}
+
+.btn-check:focus + .btn-primary, .btn-primary:focus {
+    color: #fff;
+    background-color: transparent;
+    border-color: #fff;
+    box-shadow: none;
+}
+/*..................................................*/
+
+/*Process Css*/
+
+.process {
+    float: left;
+    width: 100%;
+    padding-left: 30px;
+    padding-right: 50px;
+}
+
+.process-list {
+    float: left;
+    width: 100%;
+}
+
+    .process-list img {
+        float: left;
+        padding-right: 10px;
+    }
+
+    .process-list h3 {
+        margin-top: 8px;
+        margin-bottom: 25px;
+    }
+
+    .process-list p {
+        float: left;
+        width: 100%;
+    }
+
+    .process-list a {
+        color: #fff;
+        text-decoration: none;
+    }
+
+.process-heading {
+    margin-top: 30px;
+}
+
+/*..................................................*/
+
+/*Landing Events*/
+
+.events img{
+    float:left;
+    width:100%;
+}
+
+.rounded-top {
+    border-top-left-radius: 2.25rem !important;
+    border-top-right-radius: 2.25rem !important;
+}
+
+.rounded-bottom {
+    border-bottom-right-radius: 2.25rem !important;
+    border-bottom-left-radius: 2.25rem !important;
+}
+.card {
+    border: none !important;
+}
+
+.rounded {
+    border-radius: 2.25rem !important;
+}
+
+.card-body {
+    padding: 2.5rem 3.5rem !important;
+}
+
+.events-detail a{
+    text-decoration:none;
+    color:#fff;
+}
+
+.events-detail a:hover {
+    text-decoration: underline;
+}
+
+.card-body p {
+    font-size: 16px;
+}
+
+.card .card-header p {
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+.card-header {
+    border-bottom: 0;
+}
+
+/*..................................................*/
+
+/*Footer*/
+.footer p {
+    margin-bottom:0;
+    font-size:16px;
+}
+
+    .footer .left {
+        float: left;
+    }
+
+    .footer .right {
+        float: right;
+    }
+
+/*..................................................*/
+
+/*Support*/
+
+    .support .form-control {
+        background: #fff;
+        border-color: #fff;
+        border-radius: 30px;
+        width: 100%;
+        height: 48px;
+        margin-bottom: 10px;
+    }
+
+textarea.form-control {
+    min-height: 95px;
+}
+
+.back-button {
+    float: right;
+}
+
+.support-form .button {
+    float: right;
+    background: #fff;
+    color: #526BC6;
+    font-size: 20px;
+    margin-bottom: 100px;
+    margin-top: 30px;
+}
+
+.btn-primary:hover {
+    color: #fff;
+    background-color: #4157a4;
+    border-color: #fff;
+}
+
+.hr {
+    border-bottom: 3px solid #fff;
+}
+
+.join-community {
+    float: right;
+    width: 100%;
+    text-align: right;
+    margin-top: 50px;
+}
+
+.subscribe {
+    float: right;
+    width: 100%;
+    text-align: right;
+}
+
+    .subscribe small {
+        float: right;
+        width: 100%;
+        margin-top: 10px;
+    }
+
+.join-community p {
+    font-size: 16px;
+}
+
+/*..................................................*/
+
+/*Events Page*/
+
+.events-panel {
+    width: 100%;
+    margin-bottom: 50px;
+    display: flex;
+}
+
+.event-detail p {
+    margin-top: 48px;
+}
+
+.event-detail a {
+    float: right;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.event-detail a:hover {
+    color:#fff;
+    text-decoration:underline;
+}
+
+.event-detail p {
+    font-size:16px;
+}
+
+.hackathon {
+    padding-right: 250px;
+}
+
+.hackathon-image {
+    float: right;
+    text-align: center;
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.hackathon-schedule {
+    float: left;
+    width: 100%;
+    text-align: center;
+}
+
+.hackathon-list .button {
+    width: 100%;
+    margin-top: 27px;
+}
+
+.schedule-panel {
+    height: 195px;
+    margin-top: 100px;
+}
+
+    .schedule-panel .events {
+        margin-top: -205px;
+    }
+
+.footer {
+    position:fixed;
+    left:0;
+    bottom:0;
+    right:0;
+    z-index: 99;
+}
+
+.footer-position{    
+    float: left;
+    width: 100%;
+    text-align: center;
+    padding: 12px 0 12px 0;}
+
+/*Tabs*/
+
+.container-fluid {
+    padding-bottom: 70px;
+    height: 100%;
+    padding-top: 90px;
+}
+
+.tab-list {  border-bottom: 1px solid #ccc;
+    padding-left: 0;
+  }
+  
+  .tab-list-item {
+    display: inline-block;
+    list-style: none;
+    margin-bottom: -1px;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  .tab-list-active {
+    background-color: white;
+    border: solid #ccc;
+    border-width: 1px 1px 0 1px;
+  }
+

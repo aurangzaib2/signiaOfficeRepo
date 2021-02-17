@@ -75,30 +75,39 @@ const Login = () => {
             setPasswordErr('Please enter Password')
         }
         if(email && password){
+
+            useCont.userNamePassword({
+
+                useremail: email,
+                userpass: password
+
+            });
+
             await createLink();
             //createLink();
-            history.push("/newlanding");
+            //history.push("/newlanding");
             
 
         }
        
     }
-    if(data){
-        console.log('data', data);
-        useCont.login(data.signIn);
+    // if(data){
+    //     console.log('data', data);
+    //     useCont.login(data.signIn);
     
-    }
+    // }
 
 
    
     //login({id:1, name: 'umar'});
 
-    // useEffect(()=>{
-    //     if(data){
-    //         history.push("/newlanding")
-    //         console.log(data,'dataaaaa')
-    //     }
-    // },[data])
+    useEffect(()=>{
+        if(data){
+            useCont.login(data.signIn.accessToken, data.signIn);
+            history.push("/newlanding")
+            console.log(data,'dataaaaa')
+        }
+    },[data])
 
     // const [mutate, loading, error, data] = useMutation(SIGN_IN)
     // if (loading) return <p>Loading...</p>;

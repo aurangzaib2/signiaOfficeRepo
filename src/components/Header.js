@@ -17,16 +17,20 @@ const Header = (props) => {
     //          isLoggedIn : false
     //     }
     // }
-    const editProfileShow = (token) => {
-        if(token){
+    const editProfileShow = () => {
+        
+        const userDetails = JSON.parse(localStorage.getItem('user'));
+            console.log('token', userDetails.accessToken, 'user', userDetails)
+        if(userDetails.accessToken){
+            
             history.push('/editprofile');
         }
         else{
             history.push('/');
         }
     }
-    const {userDetails} = useContext(AuthContext);
-
+    //const {userDetails} = useContext(AuthContext);
+    
             return (
                 <header className="primary-bg-color navbar shadow-sm nav-header">
                     <Grid container>
@@ -67,7 +71,7 @@ const Header = (props) => {
                                 </Grid>
                                 <Grid md={6}>
 
-                               <p className="imageIcon" onClick={() => editProfileShow(userDetails.accessToken)}>{props.imageTag}</p>     
+                               <p className="imageIcon" onClick={editProfileShow}>{props.imageTag}</p>     
                                {/* {token.token && <Link to = '/editprofile' > </Link> }  */}
 
                                     
@@ -75,7 +79,7 @@ const Header = (props) => {
                             </Grid>
                         </Grid>
                     </Grid>
-                    {console.log('headerjs', userDetails)}
+                    {/* {console.log('headerjs', userDetails)} */}
                 </header>
                 );
         

@@ -20,7 +20,7 @@ import {AuthContext} from '../../DispatchContext';
 
 const EditProfile = props => {
 
-
+  const {userDetails, userNamePass, token} = useContext(AuthContext);
  
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
@@ -111,29 +111,24 @@ const EditProfile = props => {
       const logoutHandler =()=>{
         history.push("/")
       }
-      const SIGN_UP = gql `
-      mutation signUp($createUsersInput: CreateUsersInput!) {
-        signUp(createUsersInput: $createUsersInput) {
+      const EDIT_PROFILE = gql `
+      mutation updateUser($updateUserInput: UpdateUsersInput!, $id: String!) {
+       updateUser(updateUserInput: $updateUserInput, id: $id) {
           Firstname
           Lastname
+          id
           DOB
           Email
-          ContactNo
-          Address1
-          Address2
-          City
-          Country
-          Image
-          CreatedUserId
-          CreatedDate
-          UpdatedDate}
+        }
             
       }`;
-     
-      const [createLink, { loading, error, data }] = useMutation(SIGN_UP, {
+     console.log('edit pfoffffff', token)
+      const [updateUserMutation, { loading, error, data }] = useMutation(EDIT_PROFILE, {
         variables: {
-          createUsersInput: {
+          id: token ? userDetails.id : null,
+          updateUserInput: {
               Username:email,
+              Password: token ? userNamePass.userpass : null,
               Firstname: name,
               Lastname: name,
               DOB: dob,
@@ -143,7 +138,7 @@ const EditProfile = props => {
               Address2: address2,
               City: city,
               Country: country,
-              Image: profileImagePath
+              //Image: profileImagePath
             },
         }
     });
@@ -154,9 +149,9 @@ const EditProfile = props => {
       if(dob == ""){
         setDobErr("Please Enter d.o.b")
       }
-      if(profileImagePath == ""){
-        setImageError("Please Select Image")
-      }
+      //if(profileImagePath == ""){
+        //setImageError("Please Select Image")
+      //}
       if(email == ""){
         setEmailErr("Please Enter Email")
       }
@@ -172,8 +167,8 @@ const EditProfile = props => {
       if(country == ""){
         setCountryErr("Please Enter Country")
       }
-      if(name && dob && profileImagePath && email && contact && address1 && city &&country){
-        // createLink();
+      if(name && dob && email && contact && address1 && city &&country){
+         updateUserMutation();
       }
     }
     useEffect(()=>{
@@ -194,6 +189,7 @@ const EditProfile = props => {
             events={"Events"}
             imageTag={<img className="profile-user-image" src={LoginImage}/>}
         />
+        {console.log('edit profile', userNamePass)}
             <RegistrationCard
                 heading={"Developer Profile"}
                 description={"Edit your name, avatar etc."}
@@ -247,6 +243,7 @@ const EditProfile = props => {
                 cityCount={0}
                 agricultureCount={0}
             />
+            
         </>
     )
 }

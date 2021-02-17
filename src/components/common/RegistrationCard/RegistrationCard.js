@@ -29,7 +29,7 @@ const BorderLinearProgress = withStyles((theme) => ({
 
 const RegistrationCard = props => {
 
-    const {userDetails} = useContext(AuthContext);
+    const {userDetails, token} = useContext(AuthContext);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -122,7 +122,7 @@ const RegistrationCard = props => {
                             endAdornment={<InputAdornment position="end">Name</InputAdornment>}
                             className={classes.textField}
                             onChange={props.onChangeName}
-                            value={props.name}
+                            defaultValue={token ? userDetails.Firstname: null}
                             name={props.inputName}
                         // placeholder="Email"
                         />
@@ -164,7 +164,7 @@ const RegistrationCard = props => {
                             className={classes.textField}
                             onChange={props.onChangeEmail}
                             // value={userDetails.Email}
-                            defaultValue={userDetails.Email}
+                            defaultValue={token ? userDetails.Email: null}
                             name={props.inputEmail}
                         />
                          <Typography
@@ -350,6 +350,7 @@ const RegistrationCard = props => {
                 </Grid>
                 :""}
             </Grid>
+            <div>{token}</div>
         </Grid>
     )
 }

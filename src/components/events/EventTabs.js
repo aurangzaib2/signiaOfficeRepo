@@ -1,10 +1,10 @@
-import React from "react";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
-import image11 from "../../assets/img/image11.png";
-import image12 from "../../assets/img/image12.png";
-import deleteIcon from "../../assets/img/delete-icon.png";
-import "./event.css";
+import React from 'react'
+import { Tab, Tabs, TabList, TabPanel } from 'react-tabs'
+import 'react-tabs/style/react-tabs.css'
+import image11 from '../../assets/img/image11.png'
+import image12 from '../../assets/img/image12.png'
+import deleteIcon from '../../assets/img/delete-icon.png'
+import './event.css'
 
 const EventTabs = () => {
   return (
@@ -15,7 +15,7 @@ const EventTabs = () => {
         <Tab>Project submission</Tab>
       </TabList>
 
-      <TabPanel className="heading-font">
+      <TabPanel className='heading-font'>
         <h1>
           Faster and Safer Application Deployments on Kubernetes with Shipa and
           Oracle Kubernetes Engine (OKE)
@@ -29,59 +29,72 @@ const EventTabs = () => {
         </p>
       </TabPanel>
       <TabPanel>
-        <div id="Judges" className="tabcontent heading-font">
-          <div className="row events-panel">
-            <div className="col-md-4 event-thumbnail">
-              <img className="rounded-corners w-100" src={image12} alt="#" />
+        <div id='Judges' className='tabcontent heading-font'>
+          <div className='row events-panel'>
+            <div className='col-md-4 event-thumbnail'>
+              <img className='rounded-corners w-100' src={image12} alt='#' />
             </div>
-            <div className="event-detail col-md-8">
+            <div className='event-detail col-md-8'>
               <p>Bruno Andede - CEO & Founder SHIPA</p>
             </div>
           </div>
-          <div className="row events-panel">
-            <div className="col-md-4 event-thumbnail">
-              <img className="rounded-corners w-100" src={image11} alt="#" />
+          <div className='row events-panel'>
+            <div className='col-md-4 event-thumbnail'>
+              <img className='rounded-corners w-100' src={image11} alt='#' />
             </div>
-            <div className="event-detail col-md-8">
+            <div className='event-detail col-md-8'>
               <p>Bruno Andede - CEO & Founder SHIPA</p>
             </div>
           </div>
         </div>
       </TabPanel>
       <TabPanel>
-        <div id="Project" className="tabcontent heading-font">
-          <div className="form page-form project-detail">
-            <label for="Textarea">Project Detail</label>
-            <div className="form-group">
-              <textarea
-                className="form-control"
-                id="exampleTextarea"
-                placeholder="Go ahead... we’re listening!!"
-              ></textarea>
-            </div>
-            <div className="row mt-3">
-              <div className="col-auto">
-                <div className="upload-document">
-                  <span>ABCD.docx</span>
-                  <img src={deleteIcon} alt="#" />
+        <div id='Project' className='tabcontent heading-font'>
+          <div className='row'>
+            <div className='col-md-8'>
+              <div className='form page-form project-detail'>
+                <label for='Textarea' className='fs-3 mb-3'>
+                  Project Detail
+                </label>
+                <div className='form-group'>
+                  <textarea
+                    className='form-control'
+                    id='exampleTextarea'
+                    placeholder='Go ahead... we’re listening!!'
+                  ></textarea>
+                </div>
+                <div className='row mt-3'>
+                  <div className='col-auto'>
+                    <div className='upload-document'>
+                      <span>ABCD.docx</span>
+                      <img
+                        className='ms-3 d-inline-block'
+                        src={deleteIcon}
+                        alt='#'
+                      />
+                    </div>
+                  </div>
+                  <div className='col text-end'>
+                    <button className='btn btn-primary' type='button'>
+                      Upload Project
+                    </button>
+                  </div>
+                </div>
+                <div className='text-center mt-5 mb-5 w-100'>
+                  <button
+                    type='button'
+                    className='btn btn-primary button-filled'
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
-              <div className="col text-end">
-                <button className="btn btn-primary button" type="button">
-                  Upload Project
-                </button>
-              </div>
             </div>
-          </div>
-          <div className="text-center mt-5 mb-5 w-100">
-            <button type="button" className="btn btn-primary button-filled">
-              Submit
-            </button>
           </div>
         </div>
       </TabPanel>
     </Tabs>
-  );
-};
+  )
+}
 
-export default EventTabs;
+export default EventTabs

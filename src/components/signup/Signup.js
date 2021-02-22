@@ -4,9 +4,9 @@ import github from '../../assets/img/github.png';
 import image10 from '../../assets/img/image10.png';
 import Header from "../../components/Header";
 import Compressor from 'compressorjs';
+import Swal from 'sweetalert2';
 // import LoginLink from './LoginLink';
 import { Button, Grid, Input, InputAdornment, Link, TextField, Typography } from '@material-ui/core';
-
 import { useStyles } from './styles';
 import RegistrationCard from '../common/RegistrationCard/RegistrationCard';
 // import { SIGN_UP } from '../../components/constants';
@@ -35,49 +35,48 @@ const Signup = props => {
     const [address1Err, setAddress1Err] = useState('');
     const [cityErr, setCityErr] = useState('');
     const [countryErr, setCountryErr] = useState('');
-
     const classes = useStyles();
 
     const textHandler = (e) => {
-        if(e.target.name == "name"){
-            setName(e.target.value);
-            setnameErr("")
-        }
-        else if(e.target.name =="dob"){
-            setDob(e.target.value)
-            setDobErr("")
-        }
-        else if(e.target.name =="email"){
-            setEmail(e.target.value)
-            setEmailErr("")
-        }
-        else if(e.target.name =="password"){
-            setPassword(e.target.value)
-            setPasswordErr("")
-        }
-        else if(e.target.name =="contact"){
-            setContact(e.target.value)
-            setContactErr("")
-        }
-        else if(e.target.name =="address1"){
-            setAddress1(e.target.value)
-            setAddress1Err("")
-        }
-        else if(e.target.name =="address2"){
-            setAddress2(e.target.value)
-        }
-        else if(e.target.name =="city"){
-            setCity(e.target.value)
-            setCityErr("")
-        }
-        else if(e.target.name =="country"){
-            setCountry(e.target.value)
-            setCountryErr("")
-        }
-    };
-    const cancelHandler = ()=>{
-      history.push("/")
-    }
+      if(e.target.name == "name"){
+          setName(e.target.value);
+          setnameErr("")
+      }
+      else if(e.target.name =="dob"){
+          setDob(e.target.value)
+          setDobErr("")
+      }
+      else if(e.target.name =="email"){
+          setEmail(e.target.value)
+          setEmailErr("")
+      }
+      else if(e.target.name =="password"){
+          setPassword(e.target.value)
+          setPasswordErr("")
+      }
+      else if(e.target.name =="contact"){
+          setContact(e.target.value)
+          setContactErr("")
+      }
+      else if(e.target.name =="address1"){
+          setAddress1(e.target.value)
+          setAddress1Err("")
+      }
+      else if(e.target.name =="address2"){
+          setAddress2(e.target.value)
+      }
+      else if(e.target.name =="city"){
+          setCity(e.target.value)
+          setCityErr("")
+      }
+      else if(e.target.name =="country"){
+          setCountry(e.target.value)
+          setCountryErr("")
+      }
+  };
+  const cancelHandler = ()=>{
+    history.push("/")
+  }
     
     const uploadImageHandler = event => {
         if (
@@ -108,7 +107,7 @@ const Signup = props => {
         }
       };
       const loginOpenHandler =()=>{
-        window.location.pathname = "/";
+        history.push("/")
       }
       const SIGN_UP = gql `
       mutation signUp($createUsersInput: CreateUsersInput!) {
@@ -147,7 +146,24 @@ const Signup = props => {
             },
         }
     });
-    const saveHandler = ()=>{
+    const saveHandler = async ()=>{
+      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+      var pErr = false;
+      if(email == ""){
+        setEmailErr("Please Enter Email")
+      }
+      if(password == ""){
+        setPasswordErr("Please Enter Password")
+      }
+      if (!re.test(String(email).toLowerCase())) {
+        setEmailErr('Please enter valid email address');
+        pErr = true;
+      }
+      if (password.length < 8) {
+        setPasswordErr('Password must be at least 8, inlcuding special character, upper, lower case and numbers');
+        pErr = true;
+      }
+
       if(name == ""){
         setnameErr("Please Enter Name")
       }
@@ -156,12 +172,6 @@ const Signup = props => {
       }
       if(profileImagePath == ""){
         setImageError("Please Select Image")
-      }
-      if(email == ""){
-        setEmailErr("Please Enter Email")
-      }
-      if(password == ""){
-        setPasswordErr("Please Enter Password")
       }
       if(contact == ""){
         setContactErr("Please Enter Contact")
@@ -175,8 +185,18 @@ const Signup = props => {
       if(country == ""){
         setCountryErr("Please Enter Country")
       }
-      if(name && dob && profileImagePath && email && password && contact && address1 && city &&country)
-        createLink();
+      if(name && dob && profileImagePath && email && password && contact && address1 && city && country && pErr == false){
+       try{
+       await createLink();
+       }catch(e){
+            Swal.fire({
+                icon: 'error',
+                title: 'Error ',
+                html: 'Something went wrong',
+              });
+            // console.log(e.graphQLErrors[0].message.error,'eeeeeeeeeeee')
+        }
+      }
     }
     useEffect(()=>{
       if(data){

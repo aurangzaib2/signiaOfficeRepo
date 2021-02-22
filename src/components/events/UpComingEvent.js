@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState, useContext} from "react";
 import hackathon from "../../assets/img/hackathon.png";
 import hackathon2 from "../../assets/img/hackathon-2.jpg";
 import date from "../../assets/img/date.png";
@@ -7,8 +7,7 @@ import schedule from "../../assets/img/schedule.png";
 import EventTabs from "./EventTabs";
 import CommonBanner from "../shared/CommonBanner";
 import FeaturedItems from "../landing/FeaturedItems";
-import { Link } from 'react-router-dom';
-
+import Modal from "react-modal";
 import {
   featuredContent,
   featuredData,
@@ -18,21 +17,29 @@ import "./event.css";
 import Header from "../Header";
 import AvatarDummy from "../../assets/img/avatar.png";
 import LoginImage from "../../assets/img/login-img.png";
-import Modal from "react-modal";
-
-import { useQuery } from "@apollo/client";
-import { GET_ALL_REGISTER_EVENT } from "../constants";
+import {AuthContext} from '../../DispatchContext';
 
 const UpComingEvent = () => {
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const {logoutUser} = useContext(AuthContext);
+  const [modelIsOpen, setModelIsOpen] = useState(false);
+
+  const userDetails = JSON.parse(localStorage.getItem('user'));
+  const token = JSON.parse(localStorage.getItem('token'));
+  console.log('upcoming event', token)
+
+  // const logoutHandler = () => {
+  //   window.location.pathname = "/";
+  // };
   const logoutHandler = () => {
+    logoutUser();
     window.location.pathname = "/";
   };
-
-  const { loading, error, data } = useQuery(GET_ALL_REGISTER_EVENT);
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error :(</p>;
-
+  const modelOpen = () => {
+    if(token){
+      setModelIsOpen(true);
+    }
+    
+  }
   return (
     <>
       <Header
@@ -55,26 +62,25 @@ const UpComingEvent = () => {
           />
         </div>
         <div className="row blue-default heading-font pd-50 schedule-panel g-0">
-          <div className="col-lg-3">
+          <div className="col-lg-3 event-panel">
             <div className="card events rounded-top rounded-bottom">
               <img className="rounded-top" src={hackathon2} />
-            </div>
-
-            <div className="card-body dark-blue-default heading-font rounded-bottom">
-              <h2>Code Innovate</h2>
-              <p className="text-medium">
-                Hold a three-day hackfest at your company by letting us bring
-                the Oracle Code experience to you.
-              </p>
-              <div className="d-flex justify-content-between align-items-center events-detail">
-                <small>5 days left</small>
-                <a href="#" className="text-medium">
-                  Join Now
-                </a>
+              <div className="card-body dark-blue-default heading-font rounded-bottom">
+                <h2>Code Innovate</h2>
+                <p className="text-medium">
+                  Hold a three-day hackfest at your company by letting us bring
+                  the Oracle Code experience to you.
+                </p>
+                <div className="d-flex justify-content-between align-items-center events-detail">
+                  <small>5 days left</small>
+                  <a href="#" className="text-medium">
+                    Join Now
+                  </a>
+                </div>
               </div>
             </div>
           </div>
-          <div className="col-lg-3">
+          <div className="col-lg-3 align-self-center">
             <div className="hackathon-schedule heading-font">
               <div className="hackathon-list">
                 <img src={date} alt="#" />
@@ -82,124 +88,166 @@ const UpComingEvent = () => {
               </div>
             </div>
           </div>
-          <div className="col-lg-3">
+          <div className="col-lg-3 align-self-center">
             <div className="hackathon-schedule heading-font">
               <div className="hackathon-list">
-              <Link className="btn btn-primary button" to = '/editprofile' > Register Now </Link>
                 {/* <button
                   type="button"
-                  className="btn btn-primary button"
-                  data-bs-toggle="modal"
-                  data-bs-target="#exampleModal"
-                  onClick={() => setModalIsOpen(true)}
+                  className="btn btn-primary"
+                  data-toggle="modal"
+                  data-target=".bd-example-modal-xl"
+                  onClick={() => setModelIsOpen(true)}
                 >
                   Registered Now
                 </button> */}
-                {/* <Modal
-                  isOpen={modalIsOpen}
-                  shouldCloseOnOverlayClick
-                  onRequestClose={() => setModalIsOpen(false)}
-                  style={{ width: "900px" }}
+                <button
+                  type="button"
+                  className="btn btn-primary"
+                  data-toggle="modal"
+                  data-target=".bd-example-modal-xl"
+                  onClick={setModelIsOpen}
                 >
-                  <div className="container" style={{ textAlign: "justify" }}>
-                    <div className="row" role="document">
-                      <div className="col-md-10">
-                        <div className="modal-content">
+                  Registered Now
+                </button>
+                <Modal
+                  isOpen={modelIsOpen}
+                  shouldCloseOnOverlayClick={false}
+                  onRequestClose={() => setModelIsOpen(true)}
+                >
+                  <div className="modal-dialog modal-xl" role="document">
+                    <div className="modal-content">
+                      <div className="row">
+                        <div className="col-md-5">
                           <div className="registeration-profile">
                             <div className="developer-profile blue-default pd-50 justify-content-center text-center">
                               <img alt="#" src={developer} />
-                              <button
-                                className="btn btn-primary button-transparent"
-                                type="submit"
-                              >
-                                Upload Image
-                              </button>
+                              <div className="text-center">
+                                <button
+                                  className="btn btn-primary"
+                                  type="submit"
+                                >
+                                  Upload Image
+                                </button>
+                              </div>
                             </div>
                             <div className="profile-body text-center">
                               <p>
                                 Registration Date{" "}
-                                <span class="text-right">30, January 2020</span>
+                                <span className="text-right">
+                                  30, January 2020
+                                </span>
                               </p>
                               <button
-                                className="btn btn-primary button-transparent mt-50"
+                                className="btn btn-primary-fill"
                                 type="submit"
                               >
                                 Edit Password
                               </button>
                             </div>
                           </div>
+                        </div>
+
+                        <div className="col-md-7">
                           <form className="registeration-form page-form">
-                            <h2>Personal Information</h2>
-                            {data.getAllRegisterEvents.map(
-                              (getAllRegisterEvents) => {
-                                return (
-                                  <div key={getAllRegisterEvents.id}>
-                                    <div className="form-group">
-                                      <input
-                                        type="text"
-                                        className="form-control input-color"
-                                        id="formGroupExampleInput"
-                                        placeholder="Name"
-                                      >
-                                        {" "}
-                                        {getAllRegisterEvents.Name}
-                                      </input>
-                                    </div>
-                                    <div className="form-group">
-                                      <input
-                                        type="text"
-                                        className="form-control input-color"
-                                        id="formGroupExampleInput"
-                                        placeholder="Name"
-                                      >
-                                        {" "}
-                                        {getAllRegisterEvents.Email}
-                                      </input>
-                                    </div>
-                                    <div className="form-group">
-                                      <input
-                                        type="text"
-                                        className="form-control input-color"
-                                        id="formGroupExampleInput"
-                                        placeholder="Name"
-                                      >
-                                        {" "}
-                                        {getAllRegisterEvents.Address}
-                                      </input>
-                                    </div>
-                                    <div className="form-group">
-                                      <input
-                                        type="text"
-                                        className="form-control input-color"
-                                        id="formGroupExampleInput"
-                                        placeholder="Name"
-                                      >
-                                        {" "}
-                                        {getAllRegisterEvents.City}
-                                      </input>
-                                    </div>
-                                    <div className="form-group">
-                                      <input
-                                        type="text"
-                                        className="form-control input-color"
-                                        id="formGroupExampleInput"
-                                        placeholder="Name"
-                                      >
-                                        {" "}
-                                        {getAllRegisterEvents.Country}
-                                      </input>
-                                    </div>
-                                  </div>
-                                );
-                              }
-                            )}
-                            
+                            <h2 className="text-primary">Personal Information</h2>
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control input-color"
+                                id="formGroupExampleInput"
+                                placeholder="Name"
+                                defaultValue={token ? userDetails.Firstname : null}
+                              />
+                            </div>
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control input-color"
+                                id="formGroupExampleInput"
+                                placeholder="Date of Birth"
+                              />
+                            </div>
+
+                            <h2 className="text-primary mt-25">
+                              Contact Information
+                            </h2>
+
+                            <div className="form-group">
+                              <input
+                                type="email"
+                                className="form-control input-color"
+                                id="exampleInputEmail1"
+                                aria-describedby="emailHelp"
+                                placeholder="Enter email"
+                                defaultValue={token ? userDetails.Email : null}
+                              />
+                            </div>
+                            <div className="form-group">
+                              <input
+                                type="tel"
+                                className="form-control input-color"
+                                id="phone"
+                                name="phone"
+                                placeholder="Contact No"
+                                defaultValue= {token ? userDetails.ContactNo : null}
+                              />
+                            </div>
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control input-color"
+                                id="formGroupExampleInput"
+                                placeholder="Address Line 1"
+                                defaultValue= {token ? userDetails.Address1 : null}
+                              />
+                            </div>
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control input-color"
+                                id="formGroupExampleInput"
+                                placeholder="Address Line 2"
+                                defaultValue= {token ? userDetails.Address2 : null}
+                              />
+                            </div>
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control input-color"
+                                id="formGroupExampleInput"
+                                placeholder="City"
+                                defaultValue= {token ? userDetails.City : null}
+                              />
+                            </div>
+                            <div className="form-group">
+                              <input
+                                type="text"
+                                className="form-control input-color"
+                                id="formGroupExampleInput"
+                                placeholder="Country"
+                                defaultValue= {token ? userDetails.Country : null}
+                              />
+                            </div>
+                            <div className="form-group d-flex justify-content-between mt-4">
+                              <button
+                                className="btn btn-secondary"
+                                type="submit"
+                              >
+                                Confirm
+                              </button>
+                              <button
+                                className="btn btn-primary-fill"
+                                type="submit"
+                              >
+                                Cancel
+                              </button>
+                            </div>
                           </form>
                         </div>
                       </div>
                     </div>
                   </div>
-                </Modal> */}
+                </Modal>
               </div>
             </div>
           </div>

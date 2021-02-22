@@ -37,7 +37,6 @@ function AddUser() {
                 Username: formState.name,
                 Password: formState.age
             }
-                
           
         }
       });

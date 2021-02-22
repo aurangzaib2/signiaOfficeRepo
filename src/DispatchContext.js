@@ -12,10 +12,13 @@ import React from 'react';
 
 export const AuthContext = React.createContext({
 
+    // token: null,
+    // userId: null,
+    // login: (token) => {},
+    // logout: () => {}
     token: null,
     login: (token, userDetails) => {},
-    logout: () => {},
+    logoutUser: () => {},
     userNamePassword: (userpass) => {}
-
 
 });

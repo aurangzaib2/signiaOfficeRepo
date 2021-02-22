@@ -1,6 +1,7 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { OutlinedInput } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
-export const useStyles = makeStyles(theme => ({
+export const useStyles = makeStyles((theme) => ({
   titleFont: {
     '&.MuiTypography-body1': {
       // fontFamily: 'Roboto',
@@ -8,9 +9,8 @@ export const useStyles = makeStyles(theme => ({
       fontWeight: 'normal',
       fontSize: 24,
 
-      color: '#FFFFFF'
-    }
-
+      color: '#FFFFFF',
+    },
   },
   large: {
     height: '180px',
@@ -21,40 +21,51 @@ export const useStyles = makeStyles(theme => ({
     display: 'none',
   },
   imageBack: {
-    background: "#526BC6",
-    borderRadius: "10px",
+    background: '#526BC6',
+    borderRadius: '10px',
     // margin:'25px 45px',
   },
+  errPadding: {
+    padding: "5px 64px"
+  },
+  errPaddingFields:{
+    padding:"0px 15px 10px"
+  },
   imageGrid: {
-    padding: 41
+    padding: 41,
   },
   avatarMargin: {
-    paddingTop: "15px",
-    textAlign: "center",
+    paddingTop: '15px',
+    textAlign: 'center',
     display: 'flex',
-    justifyContent: "center",
+    justifyContent: 'center',
   },
   btnMargin: {
-    padding: "30px",
-    textAlign: 'center'
+    padding: '30px',
+    textAlign: 'center',
   },
   alignRight: {
-    textAlign: 'right'
+    textAlign: 'right',
+    marginBottom:70
   },
   alignLeft: {
-    textAlign: 'left'
+    textAlign: 'left',
   },
   blueButton: {
     '&.MuiButton-root': {
       color: '#FFF',
       borderRadius: 25,
-      outline:'none'
     },
     '&.MuiButton-outlined': {
       border: '2px solid #FFF',
+      borderRadius: '25px',
+      padding: '10px 25px',
+      opacity: '1',
+      width: '200px',
+      height: '48px',
     },
     '& .MuiButton-label': {
-      padding: '6px'
+      padding: '6px',
     },
   },
   uploadButton: {
@@ -62,24 +73,33 @@ export const useStyles = makeStyles(theme => ({
     borderRadius: 25,
     border: '2px solid #FFF',
     padding: '12px 25px',
-    cursor: "pointer"
+    cursor: 'pointer',
   },
   paddingTop: {
-    paddingTop: 95
+    paddingTop: 95,
   },
   whiteButton: {
     '&.MuiButton-root': {
-      background: '#fff',
-      color: '#526BC6',
-      borderRadius: 25,
-      outline:'none'
+      color: '#4157a4',
+      background: '#ffffff',
+      borderColor: '#4157a4',
+      borderRadius: '25px',
+      padding: '10px 25px',
+      opacity: '1',
+      width: '200px',
+      height: '48px',
+
+      '& .MuiButton-root:hover,&:focus,&:actove,&:active:focus': {
+        boxShadow: 'none',
+      },
     },
     '&.MuiButton-outlined': {
       border: '2px solid #526BC6',
+      outline: 'none',
     },
     '& .MuiButton-label': {
-      padding: '6px'
-    }
+      padding: '6px',
+    },
   },
   headingFont: {
     '&.MuiTypography-body1': {
@@ -88,9 +108,8 @@ export const useStyles = makeStyles(theme => ({
       fontWeight: 'normal',
       fontSize: 36,
       padding: '15px 40px',
-      color: '#FFFFFF'
-    }
-
+      color: '#FFFFFF',
+    },
   },
   headingTitleFont: {
     '&.MuiTypography-body1': {
@@ -99,25 +118,12 @@ export const useStyles = makeStyles(theme => ({
       fontWeight: 'normal',
       fontSize: 24,
       padding: '0px 40px',
-      color: '#FFFFFF'
-    }
-
-  },
-  headingProjectFont:{
-    '&.MuiTypography-body1': {
-      // fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'normal',
-      fontSize: 24,
-      padding: '0px 40px',
       color: '#FFFFFF',
-      marginTop:50
-    }
-
+    },
   },
   editBtnMargin: {
-    textAlign: "center",
-    marginTop: 20
+    textAlign: 'center',
+    marginTop: 20,
   },
   regFont: {
     '&.MuiTypography-body1': {
@@ -126,9 +132,8 @@ export const useStyles = makeStyles(theme => ({
       fontWeight: 'bold',
       fontSize: 16,
       padding: '15px 40px',
-      color: '#FFFFFF'
-    }
-
+      color: '#FFFFFF',
+    },
   },
   regDateFont: {
     '&.MuiTypography-body1': {
@@ -137,9 +142,8 @@ export const useStyles = makeStyles(theme => ({
       fontWeight: 'normal',
       fontSize: 16,
       padding: '15px 0px',
-      color: '#FFFFFF'
-    }
-
+      color: '#FFFFFF',
+    },
   },
   titleFontContact: {
     '&.MuiTypography-body1': {
@@ -148,106 +152,30 @@ export const useStyles = makeStyles(theme => ({
       fontWeight: 'normal',
       fontSize: 24,
       margin: '25px 0px 5px',
-      color: '#FFFFFF'
+      color: '#FFFFFF',
     },
-
-  },
-  errPadding: {
-    padding: "5px 64px"
-  },
-  font64:{
-    '&.MuiTypography-body1': {
-      // fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'bold',
-      fontSize: 64,
-      padding: '0px 40px',
-      color: '#FFFFFF'
-    }
-  },
-  progressPadding:{
-    padding:"0px 42px"
-  },
-  font18Bold:{
-    '&.MuiTypography-body1': {
-      // fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'bold',
-      fontSize: 18,
-      padding: '20px 0px',
-      color: '#FFFFFF'
-    }
-  },
-  padding24:{
-    padding:"5px 0px 0px 35px",
-    marginTop: 15,
-  },
-  font24Bold:{
-    '&.MuiTypography-body1': {
-      // fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'bold',
-      fontSize: 24,
-      
-      color: '#FFFFFF'
-    }
-  },
-  font18:{
-    '&.MuiTypography-body1': {
-      // fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'normal',
-      fontSize: 18,
-      padding: '20px 0px',
-      color: '#FFFFFF'
-    }
-  },
-  padding20:{
-    padding:"20px 0px"
-  },
-  font24:{
-    '&.MuiTypography-body1': {
-      // fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'normal',
-      fontSize: 24,
-      // padding: '20px 0px',
-      color: '#FFFFFF'
-    }
-  },
-  font26Bold:{
-    '&.MuiTypography-body1': {
-      // fontFamily: 'Roboto',
-      fontStyle: 'normal',
-      fontWeight: 'bold',
-      fontSize: 26,
-      padding: '12px 0px 16px',
-      color: '#FFFFFF'
-    }
-  },
-  projectGrid:{
-    display:"flex",
-    alignItems:"flex-end"
-  },
-  errPaddingFields:{
-    padding:"0px 15px 10px"
   },
   textField: {
+    overflow: 'hidden',
+
     '& .MuiInputBase-input': {
-      padding: '15px 15px'
+      padding: '0 30px;',
+      fontSize: '20px',
+      fontWeight: 'bold',
+      color: '#1c348a',
     },
     '& .MuiTypography-colorTextSecondary': {
       color: '#000',
-      padding: "0px 40px"
+      padding: '0px 40px',
     },
     '&.MuiInput-underline:before': {
-      borderBottom: 0
+      borderBottom: 0,
     },
     '&.MuiInput-underline:hover:not(.Mui-disabled):before': {
-      borderBottom: 0
+      borderBottom: 0,
     },
     '&.MuiInput-underline:after': {
-      borderBottom: 0
+      borderBottom: 0,
     },
     background: '#FFFFFF',
     borderRadius: 25,
@@ -258,11 +186,11 @@ export const useStyles = makeStyles(theme => ({
   },
   textFieldMarginBottom: {
     '& .MuiInputBase-input': {
-      padding: '15px 15px'
+      padding: '15px 15px',
     },
     '& .MuiTypography-colorTextSecondary': {
       color: '#000',
-      padding: "0px 40px"
+      padding: '0px 40px',
     },
     background: '#FFFFFF',
     borderRadius: 25,
@@ -270,6 +198,6 @@ export const useStyles = makeStyles(theme => ({
     borderBottom: '0px',
     margin: '5px 0px',
     height: 45,
-    marginBottom: 15
-  }
-}));
+    marginBottom: 15,
+  },
+}))

@@ -17,7 +17,8 @@ query {
     getAllBlogs {
         id,    
         Title,
-        Message
+        Message,
+        CreatedDate
     }
   }
 `;
@@ -32,18 +33,6 @@ query {
     }
   }
 `;
-export const GET_ALL_REGISTER_EVENT = gql`
-query {
-    getAllRegisterEvents {
-      id,  
-      Name,
-      Email,
-      Address,
-      City,
-      Country
-    }
-  }
-`;
 export const GET_ALL_APIS = gql`
 query {
   getAllWso2Apis{
@@ -53,6 +42,15 @@ query {
   }
   }
 `;
+// export const GET_ALL_USER = gql`
+// query {
+//     getAllUser {
+//         id,    
+//         Username,
+//         Password
+//     }
+//   }
+// `;
 
 export const SIGN_IN = gql `
 mutation signIn {
@@ -71,21 +69,3 @@ mutation createBlog($createBlogInput: CreateBlogInput!)
         id
     } 
 }`;
-
-export const USERS_BY_ID = gql `{
-  query {
-    UsersById {
-      id,
-      Firstname,
-      accessToken,
-      DOB,
-      Email,
-      ContactNo,
-      Address1,
-      Address2,
-      City,
-      Country
-  
-  }
-  }  
-}`

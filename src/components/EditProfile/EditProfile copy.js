@@ -7,8 +7,7 @@ import Header from "../../components/Header";
 import Compressor from 'compressorjs';
 // import LoginLink from './LoginLink';
 import { Button, Grid, Input, InputAdornment, Link, TextField, Typography } from '@material-ui/core';
-import { useQuery } from "@apollo/client";
-import { USERS_BY_ID } from "../constants";
+
 import { useStyles } from './styles';
 import RegistrationCard from '../common/RegistrationCard/RegistrationCard';
 // import { SIGN_UP } from '../../components/constants';
@@ -16,11 +15,16 @@ import { gql, useMutation } from '@apollo/client';
 import history from '../../utils/history';
 import {AuthContext} from '../../DispatchContext';
 
-const EditProfile = props => {
-        
-  const {userDetails, userNamePass, token, logoutUser} = useContext(AuthContext);
 
-    const [email, setEmail] = useState("");
+
+
+const EditProfile = props => {
+
+  const {userDetails, userNamePass, token} = useContext(AuthContext);
+  const userDetailss = JSON.parse(localStorage.getItem('user'));
+  const tokens = JSON.parse(localStorage.getItem('token'));
+ 
+    const [email, setEmail] = useState(userDetailss.Email);
     const [name, setName] = useState("");
     const [dob, setDob] = useState("");
     const [contact, setContact] = useState("");
@@ -29,6 +33,7 @@ const EditProfile = props => {
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
     const [profileImagePath, setProfileImagePath] = useState('');
+
     const [profileImage, setProfileImage] = useState('');
     const [imageError, setImageError] = useState('');
     const [emailErr, setEmailErr] = useState('');
@@ -38,8 +43,10 @@ const EditProfile = props => {
     const [address1Err, setAddress1Err] = useState('');
     const [cityErr, setCityErr] = useState('');
     const [countryErr, setCountryErr] = useState('');
+
     const classes = useStyles();
 
+    
     const textHandler = (e) => {
         if(e.target.name == "name"){
             setName(e.target.value);
@@ -74,10 +81,8 @@ const EditProfile = props => {
         }
     };
     const cancelHandler = ()=>{
-      //logoutUser();
       history.push("/")
     }
-    
     const uploadImageHandler = event => {
         if (
           event.target.files[0].type === 'image/jpeg' ||
@@ -107,46 +112,10 @@ const EditProfile = props => {
         }
       };
       const logoutHandler =()=>{
-        logoutUser();
+        //logoutUser();
         history.push("/")
       }
-      // const SIGN_UP = gql `
-      // mutation signUp($createUsersInput: CreateUsersInput!) {
-      //   signUp(createUsersInput: $createUsersInput) {
-      //     Firstname
-      //     Lastname
-      //     DOB
-      //     Email
-      //     ContactNo
-      //     Address1
-      //     Address2
-      //     City
-      //     Country
-      //     Image
-      //     CreatedUserId
-      //     CreatedDate
-      //     UpdatedDate}
-            
-      // }`;
-
-    //   const [createLink, { loading, error, data }] = useMutation(SIGN_UP, {
-    //     variables: {
-    //       createUsersInput: {
-    //           Username:email,
-    //           Firstname: name,
-    //           Lastname: name,
-    //           DOB: dob,
-    //           Email: email,
-    //           ContactNo: contact,
-    //           Address1: address1,
-    //           Address2: address2,
-    //           City: city,
-    //           Country: country,
-    //           Image: profileImagePath
-    //         },
-    //     }
-    // });
-    const EDIT_PROFILE = gql `
+      const EDIT_PROFILE = gql `
       mutation updateUser($updateUserInput: UpdateUsersInput!, $id: String!) {
        updateUser(updateUserInput: $updateUserInput, id: $id) {
           Firstname
@@ -157,7 +126,7 @@ const EditProfile = props => {
         }
             
       }`;
-     console.log('edit pfoffffff', token)
+     //console.log('edit pfoffffff', token)
       const [updateUserMutation, { loading, error, data }] = useMutation(EDIT_PROFILE, {
         variables: {
           id: token ? userDetails.id : null,
@@ -177,7 +146,6 @@ const EditProfile = props => {
             },
         }
     });
-    
     const saveHandler = ()=>{
       if(name == ""){
         setnameErr("Please Enter Name")
@@ -185,9 +153,9 @@ const EditProfile = props => {
       if(dob == ""){
         setDobErr("Please Enter d.o.b")
       }
-      // if(profileImagePath == ""){
-      //   setImageError("Please Select Image")
-      // }
+      //if(profileImagePath == ""){
+        //setImageError("Please Select Image")
+      //}
       if(email == ""){
         setEmailErr("Please Enter Email")
       }
@@ -204,7 +172,7 @@ const EditProfile = props => {
         setCountryErr("Please Enter Country")
       }
       if(name && dob && email && contact && address1 && city &&country){
-        // createLink();
+         updateUserMutation();
       }
     }
     useEffect(()=>{
@@ -213,15 +181,7 @@ const EditProfile = props => {
         // console.log('data',data)
       }
     },[data])
-    // useEffect(()=>{
-    //   if(data){
-    //     history.push("/newlanding")
-    //     // console.log('data',data)
-    //   }
-    // },[data])
-    // const { loading, error, data } = useQuery(USERS_BY_ID);
-    // if (loading) return <p>Loading...</p>;
-    // if (error) return <p>Error :(</p>;
+    
     return (
         <>
             <Header
@@ -231,12 +191,10 @@ const EditProfile = props => {
             resource={"Resource"}
             support={"Support"}
             events={"Events"}
-            imageTag={<img className="profile-user-image" src={LoginImage} alt= "ProfileImage"/>}
+            imageTag={<img className="profile-user-image" src={LoginImage}/>}
         />
-        {/* {data.UsersById.map((UsersById) => {
-                return ( */}
-                  {console.log('edit profile', userNamePass)}
-            <RegistrationCard 
+        {console.log('edit profile', userNamePass)}
+            <RegistrationCard
                 heading={"Developer Profile"}
                 description={"Edit your name, avatar etc."}
                 avatarImage={profileImagePath ? profileImagePath : Avatar}
@@ -246,7 +204,6 @@ const EditProfile = props => {
                 regDate={"30, Jan, 2020"}
                 editPassword={true}
                 onChangeName={textHandler}
-                
                 name={name}
                 inputName={"name"}
                 onChangeDob={textHandler}
@@ -290,7 +247,7 @@ const EditProfile = props => {
                 cityCount={0}
                 agricultureCount={0}
             />
-                
+            
         </>
     )
 }

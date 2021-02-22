@@ -2,19 +2,21 @@ import React, { Suspense, lazy } from 'react';
 import RouteWithSubRoutes from './RouteWithSubRoutes';
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { Switch } from 'react-router';
 import {
- Router,
+  Router,
   Route,
   Link,
+  Switch,
   Redirect
 } from 'react-router-dom';
 import history from './utils/history';
+import AuthRoute from './AuthRoute';
 
 const Login = lazy(() => import('./components/login/Login')) 
 const AdminLogin = lazy(() => import('./components/login/AdminLogin'))
+const AdminLanding = lazy(() => import('./components/landing/AdminLanding'))
 const Community = lazy(() => import('./components/Community'))
-const EditProfile = lazy(() => import('./components/EditProfile/EditProfile'))
+const EditProfile = lazy(() => import('./components/EditProfile'))
 const ProfileUpdate = lazy(() => import('./components/ProfileUpdate'))
 const mutation = lazy(() => import('./components/mutation'))
 const DemoVideos = lazy(() => import('./components/DemoVideos'))
@@ -27,7 +29,7 @@ const Publish = lazy(() => import('./components/apis/Publish'))
 const NewLanding = lazy(() => import('./components/landing/NewLanding'));
 const Support = lazy(() => import('./components/support/Support'));
 const Events = lazy(() => import('./components/events/Events'));
-const CreateEvents = lazy(() => import('./components/events/CreateYourEvents'));
+const CreateYourEvents = lazy(() => import('./components/events/CreateYourEvents'));
 const UpComingEvent = lazy(() => import('./components/events/UpComingEvent'));
 const Hackathon = lazy(() => import('./components/hackathon/Hackathon'));
 const RegistrationCard = lazy(() => import('./components/common/RegistrationCard/RegistrationCard'));
@@ -50,6 +52,10 @@ const routes = [
   {
     path: '/mutation',
     component: mutation,
+  },
+  {
+    path: '/adminlanding',
+    component: AdminLanding,
   },
   {
     path: '/adminlogin',
@@ -100,8 +106,8 @@ const routes = [
     component: Events,
   },
   {
-    path: '/createEvents',
-    component: CreateEvents,
+    path: '/createyourevents',
+    component: CreateYourEvents,
   },
   {
     path: '/upcomingevent',
@@ -127,7 +133,7 @@ const AppRouter = () => {
       {/* <Switch> */}
       {/* <Redirect from="/" to="/login" exact /> */}
        {/* <Route exact path="/" component={Login} />  */}
-      <div>
+      
       {/* <Header /> */}
       <Suspense fallback={<div className="lazy-loading">Loading...</div>}>
       {/* <Route
@@ -139,12 +145,46 @@ const AppRouter = () => {
               )
             }}
           /> */}
-          {routes.map((route, i) => (
+          {/* {routes.map((route, i) => (
             <RouteWithSubRoutes key={i} {...route} />
-          ))}
+          ))} */}
+              <Switch>
+                <Route exact path="/" component={Login}/>
+
+                {/*Auth routes*/}
+                        <AuthRoute path="/editprofile" component={EditProfile} />
+                        <AuthRoute path="/searchapi" component={SearchApi} />
+                        <AuthRoute path="/profileupdate" component={ProfileUpdate} />
+                        <AuthRoute path="/mutation" component={mutation} />
+                        <AuthRoute path="/adminlanding" component={AdminLanding} />
+                        <AuthRoute path="/community" component={Community} />
+                        <AuthRoute path="/publish" component={Publish} />
+                        <AuthRoute path="/demovideos" component={DemoVideos} />
+                        <AuthRoute path="/addblogdocument" component={AddBlogDocument} />
+                        
+                        <AuthRoute path="/addyourblog" component={AddYourBlog} />
+                        <AuthRoute path="/support" component={Support} />
+                        <AuthRoute path="/events" component={Events} />
+                        <AuthRoute path="/createyourevents" component={CreateYourEvents} />
+                        <AuthRoute path="/upcomingevent" component={UpComingEvent} />
+                        <AuthRoute path="/hackathon" component={Hackathon} />
+                        <AuthRoute path="/regis" component={RegistrationCard} />
+                        <AuthRoute path="/apiguide" component={ApiGuide} />
+                        <AuthRoute path="/createyourevents" component={CreateYourEvents} />
+
+
+                        {/*Public Routes*/}
+
+                        <Route path="/newlanding" component={NewLanding} />
+                        <Route path="/signup" component={Signup} />
+                        <Route path="/adminlogin" component={AdminLogin} />
+                        <Route path="/devblogs" component={DevBlogs} />
+
+        
+                </Switch>
       </Suspense>
+      <Footer />
       
-      </div>
       {/* </Switch> */}
     </Router>
   );

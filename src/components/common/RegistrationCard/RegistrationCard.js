@@ -1,17 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useRef} from 'react';
 import AvatarDummy from '../../../assets/img/avatar.png';
 import github from '../../../assets/img/github.png';
 import image10 from '../../../assets/img/image10.png';
 import Header from "../../../components/Header";
 // import LoginLink from './LoginLink';
-import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { Button, Grid, Input, InputAdornment, LinearProgress, TextField, Typography } from '@material-ui/core';
 import Avatar from '@material-ui/core/Avatar';
-import {AuthContext} from '../../../DispatchContext';
-
-
+import { makeStyles, withStyles } from '@material-ui/core/styles';
 import { useStyles } from './styles';
-
+import {AuthContext} from '../../../DispatchContext';
+//import { useForm } from "react-hook-form";
 const BorderLinearProgress = withStyles((theme) => ({
     root: {
       height: 14,
@@ -29,8 +27,11 @@ const BorderLinearProgress = withStyles((theme) => ({
 
 const RegistrationCard = props => {
 
-    const {userDetails, token} = useContext(AuthContext);
+    const userDetails = JSON.parse(localStorage.getItem('user'));
+    const token = JSON.parse(localStorage.getItem('token'));
+    console.log('registration card', userDetails);
 
+    const itemsRef = useRef([]);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [name, setName] = useState("");
@@ -41,6 +42,9 @@ const RegistrationCard = props => {
     const [city, setCity] = useState("");
     const [country, setCountry] = useState("");
     const classes = useStyles();
+
+
+
 
     return (
         <Grid className={classes.paddingTop} container>
@@ -123,10 +127,12 @@ const RegistrationCard = props => {
                             className={classes.textField}
                             onChange={props.onChangeName}
                             defaultValue={token ? userDetails.Firstname: null}
+                            //value={props.name}
                             name={props.inputName}
+                            ref={itemsRef[0]}
                         // placeholder="Email"
                         />
-                         <Typography
+                        <Typography
                             className={classes.errPaddingFields}
                             component="p"
                             color="error"
@@ -143,6 +149,7 @@ const RegistrationCard = props => {
                             onChange={props.onChangeDob}
                             value={props.dob}
                             name={props.inputDob}
+                        // placeholder="Email"
                         />
                          <Typography
                             className={classes.errPaddingFields}
@@ -163,9 +170,11 @@ const RegistrationCard = props => {
                             endAdornment={<InputAdornment position="end">Email</InputAdornment>}
                             className={classes.textField}
                             onChange={props.onChangeEmail}
-                            // value={userDetails.Email}
-                            defaultValue={token ? userDetails.Email: null}
+                           // value={props.email}
+                           defaultValue={token ? userDetails.Email: null}
                             name={props.inputEmail}
+                            ref={itemsRef[1]}
+                        // placeholder="Email"
                         />
                          <Typography
                             className={classes.errPaddingFields}
@@ -186,6 +195,7 @@ const RegistrationCard = props => {
                             onChange={props.onChangePassword}
                             value={props.password}
                             name={props.inputPassword}
+                        // placeholder="Email"
                         />
                          <Typography
                             className={classes.errPaddingFields}
@@ -201,10 +211,12 @@ const RegistrationCard = props => {
                             endAdornment={<InputAdornment position="end">Contact No.</InputAdornment>}
                             className={classes.textField}
                             onChange={props.onChangeContact}
-                            value={props.contact}
+                            defaultValue={token ? userDetails.ContactNo: null}
+                           // value={props.contact}
                             name={props.inputContact}
+                        // placeholder="Email"
                         />
-                         <Typography
+                        <Typography
                             className={classes.errPaddingFields}
                             component="p"
                             color="error"
@@ -216,10 +228,12 @@ const RegistrationCard = props => {
                             endAdornment={<InputAdornment position="end">Address Line 1</InputAdornment>}
                             className={classes.textField}
                             onChange={props.onChangeAddress1}
-                            value={props.address1}
+                            defaultValue={token ? userDetails.Address1: null}
+                            //value={props.address1}
                             name={props.inputAddress1}
+                        // placeholder="Email"
                         />
-                         <Typography
+                        <Typography
                             className={classes.errPaddingFields}
                             component="p"
                             color="error"
@@ -231,15 +245,19 @@ const RegistrationCard = props => {
                             endAdornment={<InputAdornment position="end">Address Line 2</InputAdornment>}
                             className={classes.textField}
                             onChange={props.onChangeAddress2}
-                            value={props.address2}
+                            defaultValue={token ? userDetails.Address2: null}
+                           // value={props.address2}
                             name={props.inputAddress2}
+                        // placeholder="Email"
                         />
                         <Input
                             endAdornment={<InputAdornment position="end">City</InputAdornment>}
                             className={classes.textField}
                             onChange={props.onChangeCity}
-                            value={props.city}
+                            defaultValue={token ? userDetails.City: null}
+                            //value={props.city}
                             name={props.inputCity}
+                        // placeholder="Email"
                         />
                          <Typography
                             className={classes.errPaddingFields}
@@ -253,8 +271,10 @@ const RegistrationCard = props => {
                             endAdornment={<InputAdornment position="end">Country</InputAdornment>}
                             className={classes.textFieldMarginBottom}
                             onChange={props.onChangeCountry}
-                            value={props.country}
+                            defaultValue= {token ? userDetails.Country: null}
+                            //value={props.country}
                             name={props.inputCountry}
+                        // placeholder="Email"
                         />
                          <Typography
                             className={classes.errPaddingFields}
@@ -278,7 +298,7 @@ const RegistrationCard = props => {
                 </Grid>
             </Grid>
             <Grid md={3}>
-                {props.editPassword == true ?
+            {props.editPassword == true ?
                 <Grid container>
                     <Grid item md={12}>
                         <Typography className={classes.headingTitleFont}>
@@ -350,7 +370,6 @@ const RegistrationCard = props => {
                 </Grid>
                 :""}
             </Grid>
-            <div>{token}</div>
         </Grid>
     )
 }
